@@ -22,3 +22,10 @@ Route::get('/hi', [HelloController::class,'index']);
 
 use App\Http\Controllers\Admin\Dashboard;
 Route::get('/admin', Dashboard::class);
+
+
+Route::get('/brands', function () {
+    $brands = \DB::table('brands')->get();
+    // dd($brands);
+    dump($brands);
+});

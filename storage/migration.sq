@@ -1,0 +1,6 @@
+
+   INFO  Running migrations.  
+
+  2024_12_09_175301_add_field_to_brands .........................................................................  
+  ⇂ alter table `brands` add `status` tinyint(1) not null default '1'  
+
