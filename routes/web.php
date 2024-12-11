@@ -29,3 +29,10 @@ Route::get('/brands', function () {
     // dd($brands);
     dump($brands);
 });
+
+use App\Http\Controllers\Admin\BrandController;
+
+Route::get('/admin/brands', [BrandController::class, 'index']);
+Route::get('/admin/brands/{id}', [BrandController::class, 'show']);
+Route::get('/admin/brands/{id}/edit', [BrandController::class, 'edit']);
+Route::get('/admin/brand', [BrandController::class, 'create']);
