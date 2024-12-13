@@ -36,3 +36,11 @@ Route::get('/admin/brands', [BrandController::class, 'index']);
 Route::get('/admin/brands/{id}', [BrandController::class, 'show']);
 Route::get('/admin/brands/{id}/edit', [BrandController::class, 'edit']);
 Route::get('/admin/brand', [BrandController::class, 'create']);
+
+use App\Http\Controllers\Admin\CategoryController;
+
+// Route::resource('admin/categories', CategoryController::class);
+
+Route::name('admin.')->group(function() {
+    Route::resource('admin/categories', CategoryController::class);
+});
