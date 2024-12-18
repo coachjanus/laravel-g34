@@ -44,3 +44,12 @@ use App\Http\Controllers\Admin\CategoryController;
 Route::name('admin.')->group(function() {
     Route::resource('admin/categories', CategoryController::class);
 });
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
