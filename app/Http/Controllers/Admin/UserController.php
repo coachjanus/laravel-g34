@@ -14,8 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = (new User)->paginate();
-        return view('admin.users.index', ['users'=>$users]);
+        // $users = (new User)->paginate();
+        // return view('admin.users.index', ['users'=>$users]);
+        return view('admin.users.index');
     }
 
     /**

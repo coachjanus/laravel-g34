@@ -37,13 +37,19 @@ Route::get('/admin/brands/{id}', [BrandController::class, 'show']);
 Route::get('/admin/brands/{id}/edit', [BrandController::class, 'edit']);
 Route::get('/admin/brand', [BrandController::class, 'create']);
 
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\{CategoryController, UserController};
 
 // Route::resource('admin/categories', CategoryController::class);
 
 Route::name('admin.')->group(function() {
     Route::resource('admin/categories', CategoryController::class);
+    Route::get('admin/users', [UserController::class, 'index']);
 });
+
+use App\Livewire\Admin\Users\UserList;
+
+Route::get('users', UserList::class);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
