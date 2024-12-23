@@ -50,6 +50,12 @@ use App\Livewire\Admin\Users\UserList;
 
 Route::get('users', UserList::class);
 
+use App\Livewire\Admin\Products\{ProductTable, CreateProduct, EditProduct};
+
+Route::get('admin/products', ProductTable::class)->name('admin.products');
+Route::get('admin/products/create', CreateProduct::class)->name('admin.products.create');
+Route::get('admin/products/{product}/edit', EditProduct::class)->name('admin.products.edit');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

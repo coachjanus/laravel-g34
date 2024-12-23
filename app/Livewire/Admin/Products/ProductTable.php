@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Livewire\Admin\Users;
+namespace App\Livewire\Admin\Products;
 
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\WithPagination;
-use App\Models\User;
+use App\Models\Product;
 
-#[Title("Management user list")]
-class UserList extends Component
+#[Title("Management product list")]
+class ProductTable extends Component
 {
+
     use WithPagination;
-    public $title = 'User List...';
+    public $title = 'Product List...';
     public $perPage = 7;
-
     public $sortBy = 'created_at';
-
     public $sortDir = 'DESC';
-
     public $search = '';
 
     public function setSort($colName) {
@@ -33,7 +31,7 @@ class UserList extends Component
     #[Layout('layouts.app')]
     public function render()
     {
-        return view('livewire.admin.users.user-list',[
-    'users' => User::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage)]);
+        return view('livewire.admin.products.product-table',[
+            'products' => Product::search($this->search)->orderBy($this->sortBy, $this->sortDir)->paginate($this->perPage)]);
     }
 }
