@@ -18,6 +18,9 @@ return new class extends Migration
             $table->unsignedInteger('status')->default(0);
             $table->decimal('price', 8, 2);
             $table->text('description');
+            $table->foreignId('brand_id')->constrained()->onUpdate('cascade')->onDelete(('cascade'));
+            $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete(('cascade'));
+            $table->string('cover')->nullable();
             $table->timestamps();
         });
     }

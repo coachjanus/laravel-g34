@@ -28,6 +28,10 @@ class ProductTable extends Component
         $this->sortDir = 'ASC';
     }
 
+    public function deleteProduct($id) {
+        Product::find($id)->delete();
+    }
+
     #[Layout('layouts.app')]
     public function render()
     {

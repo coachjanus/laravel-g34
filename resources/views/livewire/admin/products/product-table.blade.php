@@ -70,7 +70,23 @@
                 </td>
                 
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                    <div class="inline-flex" role="group">
+
+                    <a href="{{ route('admin.products.edit',$product) }}">
+                    <button class="bg-blue-700 hover:bg-blue-500 text-white">
+                    Edit
+                    </button>        
+                    </a>
+
+                    <button 
+                        class="bg-red-700 hover:bg-red-500 text-white"
+                        wire:click="deleteProduct({{$product->id}})"
+                        wire:confirm="Are You sure You want delete this product?"
+                        >
+                    Delete
+                    </button>  
+                    </div>
+
                 </td>
             </tr>
 
