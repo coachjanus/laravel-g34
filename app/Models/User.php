@@ -69,4 +69,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $query->where('name', 'like', "%{$value}%")
         ->orWhere('email', 'like', "%{$value}%");
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
