@@ -6,29 +6,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hel', function () {
-    return 'Hello World!';
-});
+// Route::get('/hel', function () {
+//     return 'Hello World!';
+// });
 
-Route::get('/hello', function () {
-    return view('hello', ['name' => 'PHP Laravel']);
-});
+// Route::get('/hello', function () {
+//     return view('hello', ['name' => 'PHP Laravel']);
+// });
 
 // Route::get('/hi', 'App\Http\Controllers\HelloController@index');
 
-use App\Http\Controllers\HelloController;
+// use App\Http\Controllers\HelloController;
 
-Route::get('/hi', [HelloController::class,'index']);
+// Route::get('/hi', [HelloController::class,'index']);
+
+
 
 use App\Http\Controllers\Admin\Dashboard;
 Route::get('/admin', Dashboard::class);
 
 
-Route::get('/brands', function () {
-    $brands = \DB::table('brands')->get();
-    // dd($brands);
-    dump($brands);
-});
+// Route::get('/brands', function () {
+//     $brands = \DB::table('brands')->get();
+//     // dd($brands);
+//     dump($brands);
+// });
 
 use App\Http\Controllers\Admin\BrandController;
 
@@ -63,6 +65,11 @@ Route::get('admin/posts', PostTable::class)->name('admin.posts');
 Route::get('admin/posts/create', CreatePost::class)->name('admin.posts.create');
 Route::get('admin/posts/{post}/edit', EditPost::class)->name('admin.posts.edit');
 
+
+use App\Livewire\Main\{BlogPage, PostShow};
+
+Route::get('blog', BlogPage::class)->name('blog');
+Route::get('post/show/{post:slug}', PostShow::class)->name('post.show');
 
 Route::middleware([
     'auth:sanctum',
