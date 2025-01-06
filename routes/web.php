@@ -66,10 +66,13 @@ Route::get('admin/posts/create', CreatePost::class)->name('admin.posts.create');
 Route::get('admin/posts/{post}/edit', EditPost::class)->name('admin.posts.edit');
 
 
-use App\Livewire\Main\{BlogPage, PostShow};
+use App\Livewire\Main\{BlogPage, PostShow, Catalog, ShoppingCart};
 
 Route::get('blog', BlogPage::class)->name('blog');
 Route::get('post/show/{post:slug}', PostShow::class)->name('post.show');
+
+Route::get('shop', Catalog::class)->name('shop');
+Route::get('shoppimg-cart', ShoppingCart::class)->name('shopping.cart');
 
 Route::middleware([
     'auth:sanctum',
