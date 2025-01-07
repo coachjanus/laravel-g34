@@ -72,7 +72,12 @@ Route::get('blog', BlogPage::class)->name('blog');
 Route::get('post/show/{post:slug}', PostShow::class)->name('post.show');
 
 Route::get('shop', Catalog::class)->name('shop');
-Route::get('shoppimg-cart', ShoppingCart::class)->name('shopping.cart');
+Route::get('shopping-cart', ShoppingCart::class)->name('shopping.cart');
+
+Route::get('/checkout', function () {
+    return 'Checkout!';
+})->name('checkout');
+
 
 Route::middleware([
     'auth:sanctum',

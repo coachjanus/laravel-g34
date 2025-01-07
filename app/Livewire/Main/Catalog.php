@@ -51,19 +51,19 @@ class Catalog extends Component
     }
 
     public function mount() {
-        // $this->products = collect();
-        // foreach ($this->products as $product) {
-        //     $this->quantity[$product->id] = 1;
-        // }
+        $this->products = collect();
+        foreach ($this->products as $product) {
+            $this->quantity[$product->id] = 1;
+        }
 
-        // $this->loadMore();
-        $this->products = Product::all();
+        $this->loadMore();
+        // $this->products = Product::all();
 
     }
 
     public function loadMore() {
         $this->products->push(
-            $this->paginator->getCollection()
+            ...$this->paginator->getCollection()
         );
         $this->page = $this->page + 1;
     }

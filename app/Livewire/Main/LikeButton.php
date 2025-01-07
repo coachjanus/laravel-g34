@@ -15,13 +15,14 @@ class LikeButton extends Component
         }
         $user = auth()->user();
 
-        if ($user->hasLiked($this->posts)) {
+        if ($user->hasLiked($this->post)) {
             $user->likes()->detach($this->post);
             return;
         }
 
         $user->likes()->attach($this->post);
     }
+
     public function render()
     {
         return view('livewire.main.like-button');

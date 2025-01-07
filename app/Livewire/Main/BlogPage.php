@@ -57,7 +57,7 @@ class BlogPage extends Component
         $this->resentPosts = Post::latest()->take(4)->get();
     }
 
-    #[Computed]
+    #[Computed()]
     public function posts() {
         return Post::published()
         ->with('user', 'tags')
@@ -72,12 +72,12 @@ class BlogPage extends Component
         ->paginate();
     }
 
-    #[Computed]
+    #[Computed()]
     public function activeTag() {
         if ($this->tag == null || $this->tag == '') {
             return null;
         }
-        return Tag::where('slug', $this->tag)->girst();
+        return Tag::where('slug', $this->tag)->first();
     }
 
     public function render()

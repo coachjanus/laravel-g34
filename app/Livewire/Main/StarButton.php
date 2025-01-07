@@ -10,7 +10,7 @@ class StarButton extends Component
 {
     public Product $product;
 
-    public function toggleLike() {
+    public function toggleStar() {
         if (auth()->guest()) {
             return $this->redirect(route('login'), true);
         }
