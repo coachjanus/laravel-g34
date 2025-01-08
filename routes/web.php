@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -66,7 +66,7 @@ Route::get('admin/posts/create', CreatePost::class)->name('admin.posts.create');
 Route::get('admin/posts/{post}/edit', EditPost::class)->name('admin.posts.edit');
 
 
-use App\Livewire\Main\{BlogPage, PostShow, Catalog, ShoppingCart};
+use App\Livewire\Main\{BlogPage, PostShow, Catalog, ShoppingCart, HomePage};
 
 Route::get('blog', BlogPage::class)->name('blog');
 Route::get('post/show/{post:slug}', PostShow::class)->name('post.show');
@@ -77,6 +77,10 @@ Route::get('shopping-cart', ShoppingCart::class)->name('shopping.cart');
 Route::get('/checkout', function () {
     return 'Checkout!';
 })->name('checkout');
+
+
+
+Route::get('/', HomePage::class)->name('home');
 
 
 Route::middleware([

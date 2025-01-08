@@ -57,7 +57,7 @@ class Catalog extends Component
         }
 
         $this->loadMore();
-        // $this->products = Product::all();
+
 
     }
 

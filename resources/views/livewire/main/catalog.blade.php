@@ -74,7 +74,7 @@
       <!-- sidebar -->
         <div class="px-6">
             <aside class="rounded shadow overflow-hidden mb-6">
-                <h3 class="text-sm bg-gray-100 text-gray-700 py-3 px-4 border-b">Blog search</h3>
+                <h3 class="text-sm bg-gray-100 text-gray-700 py-3 px-4 border-b">Catalog search</h3>
                 <div class="flex flex-wrap justify-start gap-2 topics">
                     <div x-data="{
                             query: '{{ request('search', '') }}'
@@ -100,7 +100,7 @@
             </aside>
                     
             <aside class="rounded shadow overflow-hidden mb-6">
-                <h3 class="text-sm bg-gray-100 text-gray-700 py-3 px-4 border-b">Tags cloud</h3>
+                <h3 class="text-sm bg-gray-100 text-gray-700 py-3 px-4 border-b">Categories</h3>
                     <div class="flex flex-wrap justify-start gap-2 topics">
                        {{--  @foreach ($tags as $tag)
                             <x-main.posts.tag-badge :tag="$tag" />
@@ -109,7 +109,7 @@
             </aside>
                     
             <aside class="rounded shadow overflow-hidden mb-6">
-                <h3 class="text-sm bg-gray-100 text-gray-700 py-3 px-4 border-b">Latest Posts</h3>
+                <h3 class="text-sm bg-gray-100 text-gray-700 py-3 px-4 border-b">Latest Products</h3>
 
                 <div class="p-4">
                     <ul class="list-reset leading-normal">

@@ -41,7 +41,7 @@ class Post extends Model
     }
 
     public function scopePopular($query) {
-        $query->withCount('like')->orderBy('likes_count', 'desc');
+        $query->withCount('likes')->orderBy('likes_count', 'desc');
     }
 
     public function user()
@@ -53,7 +53,8 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function commemts() {
+
+    public function comments() {
         return $this->hasMany(Comment::class);
     }
 
