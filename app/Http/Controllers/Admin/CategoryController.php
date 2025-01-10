@@ -31,11 +31,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:categories|min:3|max:20'
+        ]);
+
         $category = new Category;
         $category->name = $request->name;
         $category->status = $request->status ? true : false;
         $category->save();
-        // return redirect()->route('categories.index');
+       
         return redirect()->route('admin.categories.index');
 
     }
@@ -61,12 +65,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:categories,id,{$this->category->id}|min:3|max:20'
+        ]);
+        
         Category::where('id', $category->id)->update([
             'name' => $request->name,
             'status' => $request->status ? true : false
         ]);
-        // return redirect()->route('categories.index');
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('success', "Category updated successfully");
     }
 
     /**
@@ -78,4 +85,26 @@ class CategoryController extends Controller
         // return redirect()->route('categories.index');
         return redirect()->route('admin.categories.index');
     }
+
+
+    public function trashed()
+    {
+        $categories = Category::onlyTrashed()->paginate(10);
+        return view('admin.categories.trashed', ['categories'=>$categories]);
+    }
+
+    public function restore($id)
+    {
+        Category::withTrashed()
+        ->where('id', "=", $id)
+        ->restore();
+        return redirect()->route('admin.categories.trashed')->with('success', "Category restored successfully");
+    }
+
+    public function force($id)   {
+        $category = Category::withTrashed()->where('id', $id)->first();
+        $category->forceDelete();
+        return redirect()->route('admin.categories.index')->with("success", "Category deleted successfully!");
+    }
+ 
 }

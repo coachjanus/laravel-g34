@@ -41,8 +41,12 @@ Route::get('/admin/brand', [BrandController::class, 'create']);
 
 use App\Http\Controllers\Admin\{CategoryController, UserController};
 
-// Route::resource('admin/categories', CategoryController::class);
-
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('admin/categories/trashed', 'trashed')->name('admin.categories.trashed');
+    Route::post('admin/categories/restore/{id}', 'restore')->name('admin.categories.restore');
+    Route::delete('admin/categories/force/{id}', 'force')->name('admin.categories.force');
+ });
+ 
 Route::name('admin.')->group(function() {
     Route::resource('admin/categories', CategoryController::class);
     Route::get('admin/users', [UserController::class, 'index']);
