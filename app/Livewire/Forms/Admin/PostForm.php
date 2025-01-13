@@ -9,6 +9,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostForm extends Form
 {
@@ -51,7 +52,7 @@ class PostForm extends Form
         $this->user_id = Auth::id();
         $this->slug = Str::slug($this->title, '_');
         $this->validate();
-        // dd($this->all());
+
         
        ;
         $this->cover = $this->cover->store('posts', 'public');
@@ -61,6 +62,9 @@ class PostForm extends Form
 
     public function update()
     {
+        if (!Gate::allows('update-post', $this->post)) {
+            abort(404);
+        }
         $this->validate();
         if ($this->cover) {
             if ($this->oldCover != null && Storage::disk('public')->exists($this->oldCover)) {

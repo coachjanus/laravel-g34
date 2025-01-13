@@ -16,12 +16,16 @@ class DatabaseSeeder extends Seeder
         // User::factory(100)->create();
         // \App\Models\Category::factory(40)->create();
         // \App\Models\Brand::factory(20)->create();
-        \App\Models\Tag::factory(10)->create();
-        // $this->call([
-        //     // UsersTableSeeder::class,
-        //     BrandsTableSeeder::class,
-        //     // CategoriesTableSeeder::class,
-        // ]);            
+        // \App\Models\Tag::factory(10)->create();
+        $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            DefaultUserSeeder::class,
+ 
+            // UsersTableSeeder::class,
+            // BrandsTableSeeder::class,
+            // CategoriesTableSeeder::class,
+        ]);            
 
         // User::factory()->create([
         //     'name' => 'Test User',

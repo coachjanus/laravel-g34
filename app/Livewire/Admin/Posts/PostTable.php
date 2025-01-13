@@ -29,7 +29,9 @@ class PostTable extends Component
     }
 
     public function deletePost($id) {
-        Post::find($id)->delete();
+        $post = Post::find($id);
+        $this->authorize('delete', $post);
+        $post->delete();
     }
     public function render()
     {

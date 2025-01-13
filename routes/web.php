@@ -39,7 +39,7 @@ Route::get('/admin/brands/{id}', [BrandController::class, 'show']);
 Route::get('/admin/brands/{id}/edit', [BrandController::class, 'edit']);
 Route::get('/admin/brand', [BrandController::class, 'create']);
 
-use App\Http\Controllers\Admin\{CategoryController, UserController};
+use App\Http\Controllers\Admin\{CategoryController, UserController, RoleController};
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('admin/categories/trashed', 'trashed')->name('admin.categories.trashed');
@@ -49,6 +49,7 @@ Route::controller(CategoryController::class)->group(function () {
  
 Route::name('admin.')->group(function() {
     Route::resource('admin/categories', CategoryController::class);
+    Route::resource('admin/roles', RoleController::class);
     Route::get('admin/users', [UserController::class, 'index']);
 });
 
@@ -65,9 +66,11 @@ Route::get('admin/products/{product}/edit', EditProduct::class)->name('admin.pro
 
 use App\Livewire\Admin\Posts\{PostTable, CreatePost, EditPost};
 
-Route::get('admin/posts', PostTable::class)->name('admin.posts');
-Route::get('admin/posts/create', CreatePost::class)->name('admin.posts.create');
-Route::get('admin/posts/{post}/edit', EditPost::class)->name('admin.posts.edit');
+Route::group(['middlewares'=>['role:Admin|Product Manager']], function(){
+    Route::get('admin/posts', PostTable::class)->name('admin.posts');
+    Route::get('admin/posts/create', CreatePost::class)->name('admin.posts.create');
+    Route::get('admin/posts/{post}/edit', EditPost::class)->name('admin.posts.edit');    
+});
 
 
 use App\Livewire\Main\{BlogPage, PostShow, Catalog, ShoppingCart, HomePage};

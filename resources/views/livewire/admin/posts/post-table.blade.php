@@ -77,14 +77,15 @@
                     Edit
                     </button>        
                     </a>
-
+                    @can('delete', $post)
                     <button 
                         class="bg-red-700 hover:bg-red-500 text-white"
                         wire:click="deletePost({{$post->id}})"
                         wire:confirm="Are You sure You want delete this post?"
                         >
                     Delete
-                    </button>  
+                    </button> 
+                    @endcan 
                     </div>
 
                 </td>
